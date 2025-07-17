@@ -34,7 +34,7 @@
 | prefecture_id      | integer    | null: false（ActiveHash）       |
 | shipping_day_id    | integer    | null: false（ActiveHash）       |
 | price              | integer    | null: false                    |
-| user_id            | references | null: false, foreign_key: true |
+| user               | references | null: false, foreign_key: true |
 
 **Association**
 
@@ -47,8 +47,8 @@
 
 | Column   | Type       | Options                        |
 |----------|------------|--------------------------------|
-| user_id  | references | null: false, foreign_key: true |
-| item_id  | references | null: false, foreign_key: true |
+| user     | references | null: false, foreign_key: true |
+| item     | references | null: false, foreign_key: true |
 
 **Association**
 
@@ -68,7 +68,7 @@
 | street_address | string     | null: false                    |
 | building       | string     |                                |
 | phone_number   | string     | null: false                    |
-| order_id       | references | null: false, foreign_key: true |
+| order          | references | null: false, foreign_key: true |
 
 **Association**
 
