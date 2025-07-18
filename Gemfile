@@ -54,6 +54,7 @@ group :development do
   gem "web-console"
   gem 'rubocop', '1.71.2', require: false
   gem 'rspec-rails', '~> 4.0.0'
+  gem 'factory_bot_rails'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
