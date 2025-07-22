@@ -1,4 +1,4 @@
-window.addEventListener('turbo:load', () => {
+function setupPriceCalculation() {
   const priceInput = document.getElementById('item-price');
   const taxPrice = document.getElementById('add-tax-price');
   const profit = document.getElementById('profit');
@@ -12,4 +12,10 @@ window.addEventListener('turbo:load', () => {
     taxPrice.innerText = tax.toLocaleString();
     profit.innerText = gain.toLocaleString();
   });
-});
+}
+
+// Turboが読み込まれたとき（ページ遷移時）
+document.addEventListener('turbo:load', setupPriceCalculation);
+
+// renderされたとき（render :new などのリダイレクトなしの画面更新時）
+document.addEventListener('turbo:render', setupPriceCalculation);
