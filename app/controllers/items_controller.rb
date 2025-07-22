@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path # 登録に成功したらトップページへリダイレクト
     else
-      render :new # 登録に失敗したら再度フォームを表示
+      render :new, status: :unprocessable_entity
     end
   end
 
