@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_day
 
   validates :image, :name, :description, :price,
-            :category_id, :condition_id, :shipping_fee_id, :prefecture_id, :shipping_day_id,
+            :category_id, :condition_id, :shipping_fee_id, :prefecture_id, :shipping_day_id, :user,
             presence: true
 
   validates :price,
