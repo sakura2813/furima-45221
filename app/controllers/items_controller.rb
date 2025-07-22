@@ -5,4 +5,23 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
   end
+
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path # 登録に成功したらトップページへリダイレクト
+    else
+      render :new # 登録に失敗したら再度フォームを表示
+    end
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(
+      :name, :description, :price,
+      :category_id, :condition_id, :shipping_fee_id, :prefecture_id, :shipping_day_id,
+      :image
+    ).merge(user_id: current_user.id)
+  end
 end
