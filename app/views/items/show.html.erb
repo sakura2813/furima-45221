@@ -24,14 +24,17 @@
       </span>
     </div>
 
-    <%# ログイン状態且つ、自身が出品した販売中商品の場合 %>
-    <% if user_signed_in? && current_user.id == @item.user.id && @item.order.nil? %>
-      <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
-      <p class="or-text">or</p>
-      <%= link_to "削除", "#", data: {turbo_method: :delete}, class:"item-destroy" %>
-    <%# ログイン状態且つ、自身が出品していない販売中商品の場合 %>
-    <% elsif user_signed_in? && current_user.id != @item.user.id && @item.order.nil? %>
-      <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+    <%# ログイン中のユーザー %>
+    <% if user_signed_in? %>
+      <%# 自身が出品した販売中商品の場合 %>
+      <% if current_user.id == @item.user.id && @item.order.nil? %>
+        <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
+        <p class="or-text">or</p>
+        <%= link_to "削除", "#", data: {turbo_method: :delete}, class:"item-destroy" %>
+    <%# 自身が出品していない販売中商品の場合 %>
+      <% else %>
+        <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+      <% end %>
     <% end %>
 
     <div class="item-explain-box">
