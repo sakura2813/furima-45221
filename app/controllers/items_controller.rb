@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to root_path # 更新に成功したらトップページへリダイレクト
+      redirect_to item_path(@item) # 更新に成功したら商品詳細ページへリダイレクト
     else
       render :edit, status: :unprocessable_entity
     end
