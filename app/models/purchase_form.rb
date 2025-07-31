@@ -4,7 +4,7 @@ class PurchaseForm
                 :phone_number, :user_id, :item_id, :token
 
   with_options presence: true do
-    validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
+    validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/ }
     validates :prefecture_id, numericality: { other_than: 1 }
     validates :city
     validates :street_address
@@ -15,7 +15,7 @@ class PurchaseForm
   end
 
   def save
-    order = Order.create(user_id: user_id, item_id: item_id) 
+    order = Order.create(user_id: user_id, item_id: item_id)
     ShippingAddress.create(
       postal_code: postal_code,
       prefecture_id: prefecture_id,

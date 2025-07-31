@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, expect: :index
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_item, only: [:new, :create]
+  before_action :redirect_if_sold_out_or_own_item, only: [:new, :create]
 
   def index
   end
@@ -25,10 +26,7 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  def purchase_params
-    params.require(:purchase_form).permit(
-      :postal_code, :prefecture_id, :city, :street_address, :building,
-      :phone_number, # :token
-    ).merge(user_id: current_user.id, item_id: params[:item_id])
+  def redirect_if_sold_out_or_own_item
+    redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
   end
 end
