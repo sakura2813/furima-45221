@@ -31,6 +31,14 @@
     </div>
     <%# /支払額の表示 %>
 
+    <% if @purchase_form.errors.any? %>
+      <ul>
+      <% @purchase_form.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    <% end %>
+
     <%= form_with(model: @purchase_form, url: item_orders_path(@item), id: 'charge-form', class: 'transaction-form-wrap',local: true) do |f| %>
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
