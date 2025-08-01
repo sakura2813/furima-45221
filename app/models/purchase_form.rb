@@ -9,7 +9,7 @@ class PurchaseForm
     validates :city
     validates :street_address
     validates :phone_number, format: { with: /\A\d{10,11}\z/ }
-    # validates :token
+    validates :token
     validates :user_id
     validates :item_id
   end
