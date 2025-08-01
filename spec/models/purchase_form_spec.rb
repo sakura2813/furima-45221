@@ -69,6 +69,12 @@ RSpec.describe PurchaseForm, type: :model do
         expect(@purchase_form.errors.full_messages).to include('Phone number is invalid')
       end
 
+      it '電話番号が全角数字では保存できない' do
+        @purchase_form.phone_number = '０９０１２３４５６７８'
+        @purchase_form.valid?
+        expect(@purchase_form.errors.full_messages).to include('Phone number is invalid')
+      end
+
       it 'トークンが空では購入できない' do
         @purchase_form.token = nil
         @purchase_form.valid?
