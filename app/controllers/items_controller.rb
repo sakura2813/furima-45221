@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def edit
@@ -53,6 +54,8 @@ class ItemsController < ApplicationController
   end
 
   def redirect_unless_owner
-    redirect_to root_path unless current_user == @item.user
+    @item = Item.find(params[:id])
+    current_user != @item.user || @item.order.present?
+    redirect_to root_path
   end
 end
