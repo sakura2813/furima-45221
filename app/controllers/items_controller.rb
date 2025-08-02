@@ -55,7 +55,6 @@ class ItemsController < ApplicationController
 
   def redirect_unless_owner
     @item = Item.find(params[:id])
-    current_user != @item.user || @item.order.present?
-    redirect_to root_path
+    redirect_to root_path if current_user.id != @item.user_id
   end
 end
